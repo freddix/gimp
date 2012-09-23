@@ -8,7 +8,7 @@ Epoch:		1
 License:	GPL
 Group:		X11/Applications/Graphics
 Source0:	ftp://ftp.gimp.org/pub/gimp/v2.8/%{name}-%{version}.tar.bz2
-# Source0-md5:	28997d14055f15db063eb92e1c8a7ebb
+# Source0-md5:	b542138820ca3a41cbd63fc331907955
 URL:		http://www.gimp.org/
 BuildRequires:	alsa-lib-devel
 BuildRequires:	autoconf
