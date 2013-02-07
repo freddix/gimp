@@ -2,13 +2,13 @@
 
 Summary:	The GNU Image Manipulation Program
 Name:		gimp
-Version:	2.8.2
+Version:	2.8.4
 Release:	1
 Epoch:		1
 License:	GPL
 Group:		X11/Applications/Graphics
 Source0:	ftp://ftp.gimp.org/pub/gimp/v2.8/%{name}-%{version}.tar.bz2
-# Source0-md5:	b542138820ca3a41cbd63fc331907955
+# Source0-md5:	392592e8755d046317878d226145900f
 URL:		http://www.gimp.org/
 BuildRequires:	alsa-lib-devel
 BuildRequires:	autoconf
