@@ -2,13 +2,13 @@
 
 Summary:	The GNU Image Manipulation Program
 Name:		gimp
-Version:	2.8.6
+Version:	2.8.8
 Release:	1
 Epoch:		1
 License:	GPL
 Group:		X11/Applications/Graphics
 Source0:	ftp://ftp.gimp.org/pub/gimp/v2.8/%{name}-%{version}.tar.bz2
-# Source0-md5:	12b3fdf33d1f07ae79b412a9e38b9693
+# Source0-md5:	ef2547c3514a1096931637bd6250635a
 URL:		http://www.gimp.org/
 BuildRequires:	alsa-lib-devel
 BuildRequires:	autoconf
@@ -120,13 +120,12 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-# Link gimptool to gimptool-2.0
-ln -s gimptool-%{mver} $RPM_BUILD_ROOT%{_bindir}/gimptool
-echo '.so gimptool-%{mver}' > $RPM_BUILD_ROOT%{_mandir}/man1/gimptool.1
+ln -s gimptool-2.0.1 $RPM_BUILD_ROOT%{_bindir}/gimptool
+echo '.so gimptool-2.0.1' > $RPM_BUILD_ROOT%{_mandir}/man1/gimptool.1
 
-rm -f $RPM_BUILD_ROOT%{_libdir}/gimp/%{mver}/modules/*.la
-rm -f $RPM_BUILD_ROOT%{_libdir}/gimp/%{mver}/python/*.{la,py}
-rm -r $RPM_BUILD_ROOT%{_datadir}/locale/ca@valencia
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/{,gimp/%{mver}/modules}/*.la
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/gimp/%{mver}/python/*.{la,py}
+%{__rm} -r $RPM_BUILD_ROOT%{_datadir}/locale/ca@valencia
 
 %find_lang %{name} --all-name
 
@@ -134,11 +133,11 @@ rm -r $RPM_BUILD_ROOT%{_datadir}/locale/ca@valencia
 rm -rf $RPM_BUILD_ROOT
 
 %post
-%update_desktop_database_post
+%update_desktop_database
 %update_icon_cache hicolor
 
 %postun
-%update_desktop_database_postun
+%update_desktop_database
 %update_icon_cache hicolor
 
 %post	libs -p /usr/sbin/ldconfig
@@ -218,12 +217,11 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/gimptool-%{mver}
 %attr(755,root,root) %{_bindir}/gimptool
 %attr(755,root,root) %{_libdir}/lib*.so
-%{_pkgconfigdir}/*.pc
-
 %{_includedir}/gimp-2.0
+%{_pkgconfigdir}/*.pc
 %{_aclocaldir}/gimp-2.0.m4
 
-%{_mandir}/man1/gimptool-%{mver}*
+%{_mandir}/man1/gimptool-2.0.1*
 %{_mandir}/man1/gimptool.1*
 
 %files apidocs
