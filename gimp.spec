@@ -2,18 +2,19 @@
 
 Summary:	The GNU Image Manipulation Program
 Name:		gimp
-Version:	2.8.8
+Version:	2.8.10
 Release:	1
 Epoch:		1
 License:	GPL
 Group:		X11/Applications/Graphics
 Source0:	ftp://ftp.gimp.org/pub/gimp/v2.8/%{name}-%{version}.tar.bz2
-# Source0-md5:	ef2547c3514a1096931637bd6250635a
+# Source0-md5:	84c964aab7044489af69f7319bb59b47
 URL:		http://www.gimp.org/
 BuildRequires:	alsa-lib-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	curl-devel
+BuildRequires:	freetype-devel >= 1:2.5.1
 BuildRequires:	gegl-devel
 BuildRequires:	gettext-devel
 BuildRequires:	giflib-devel
@@ -90,6 +91,9 @@ SVG plugin for Gimp.
 
 %prep
 %setup -q
+
+# freetype 2.5.1 breakage
+%{__sed} -i "s|<freetype/|<|" app/text/gimpfont.c
 
 %build
 %{__gtkdocize}
