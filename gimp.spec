@@ -2,13 +2,13 @@
 
 Summary:	The GNU Image Manipulation Program
 Name:		gimp
-Version:	2.8.10
+Version:	2.8.14
 Release:	1
 Epoch:		1
 License:	GPL
 Group:		X11/Applications/Graphics
-Source0:	ftp://ftp.gimp.org/pub/gimp/v2.8/%{name}-%{version}.tar.bz2
-# Source0-md5:	84c964aab7044489af69f7319bb59b47
+Source0:	http://download.gimp.org/pub/gimp/v2.8/%{name}-%{version}.tar.bz2
+# Source0-md5:	233c948203383fa078434cc3f8f925cb
 URL:		http://www.gimp.org/
 BuildRequires:	alsa-lib-devel
 BuildRequires:	autoconf
@@ -17,11 +17,13 @@ BuildRequires:	curl-devel
 BuildRequires:	freetype-devel >= 1:2.5.1
 BuildRequires:	gegl-devel
 BuildRequires:	gettext-devel
-BuildRequires:	giflib-devel
+BuildRequires:	ghostscript-devel
+BuildRequires:	giflib4-devel
 BuildRequires:	gtk+-devel
 BuildRequires:	gtk+-webkit-devel
 BuildRequires:	gtk-doc
 BuildRequires:	intltool
+BuildRequires:	iso-codes
 BuildRequires:	lcms-devel
 BuildRequires:	libexif-devel
 BuildRequires:	libjpeg-devel
@@ -92,9 +94,6 @@ SVG plugin for Gimp.
 %prep
 %setup -q
 
-# freetype 2.5.1 breakage
-%{__sed} -i "s|<freetype/|<|" app/text/gimpfont.c
-
 %build
 %{__gtkdocize}
 %{__intltoolize}
@@ -110,9 +109,9 @@ SVG plugin for Gimp.
 	--enable-mmx			\
 	--enable-mp			\
 	--enable-sse			\
+	--with-gif-compression=lzw	\
 	--with-html-dir=%{_gtkdocdir}	\
 	--with-libcurl			\
-	--with-shm=posix		\
 	--without-aa			\
 	--without-gvfs 			\
 	--without-wmf
